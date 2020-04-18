@@ -9,23 +9,14 @@ const Home = () => (
       textAlign="center"
       style={{
         fontFamily: "'Bungee Inline', cursive",
-        color: "#2185D0",
-        marginTop: "15px",
+        color: "rgb(247, 247, 247)",
+        marginTop: "60px",
         marginBottom: "20px",
       }}
     >
       Survivor Bingo
     </Header>
     <Image src={SurvivorLogo}></Image>
-    <Header
-      as="h2"
-      textAlign="center"
-      style={{
-        fontFamily: "'Boogaloo', cursive",
-      }}
-    >
-      Survivors - Ready?!
-    </Header>
   </div>
 );
 

@@ -1,0 +1,4 @@
+<%= simple_form_for(user, html: { class: 'ui form mt-3 mb-3', style: 'width: 100%' }) do |f| %>
+  <%= f.input :username, label: false, placeholder: "Your Player Name", style: 'border-radius: 100px' %>
+  <%= f.button :submit, value: "Go!", class: 'ui primary button', style: 'width: 100%; border-radius: 100px' %>
+<% end %>
