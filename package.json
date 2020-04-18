@@ -6,11 +6,12 @@
     "@rails/webpacker": "5.0.1",
     "babel-plugin-transform-react-remove-prop-types": "^0.4.24",
     "bootstrap": "^4.4.1",
-    "jquery": "^3.5.0",
+    "jquery": "3.4.1",
     "popper.js": "^1.16.1",
     "prop-types": "^15.7.2",
     "react": "^16.13.1",
-    "react-dom": "^16.13.1"
+    "react-dom": "^16.13.1",
+    "semantic-ui-react": "^0.88.2"
   },
   "devDependencies": {
     "webpack-dev-server": "^3.10.3"

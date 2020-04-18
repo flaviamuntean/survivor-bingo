@@ -1,2 +1,12 @@
-<h1>Pages#home</h1>
-<p>Find me in app/views/pages/home.html.erb</p>
+<div class="ui container">
+  <div id="home"></div>
+
+  <div class='d-flex justify-content-center mt-3'>
+    <%= link_to "Go!", new_user_session_path, class: "ui button primary" %>
+  </div>
+</div>
+
+<div id="survivors-ready"></div>
+
+<%= javascript_pack_tag 'home' %>
+<%= javascript_pack_tag 'survivors-ready' %>
