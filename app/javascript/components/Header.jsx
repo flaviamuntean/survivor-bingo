@@ -8,7 +8,7 @@ class Header extends Component {
         <span className="align-self-center" style={{ color: "white" }}>
           Full House! <br /> Total time:{" "}
           {moment
-            .duration(this.props.endTime - this.props.startTime)
+            .duration(this.props.endTimeFull - this.props.startTime)
             .format("h [hr], m [min], s [sec]")}{" "}
           ✌️
         </span>

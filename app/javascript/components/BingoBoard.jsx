@@ -65,7 +65,9 @@ class BingoBoard extends Component {
           }
         } else if (
           this.checkRow(this.state.activeRow) ||
-          this.checkCol(this.state.activeCol)
+          this.checkCol(this.state.activeCol) ||
+          this.checkDiagonalA(this.state.activeRow, this.state.activeCol) ||
+          this.checkDiagonalB(this.state.activeRow, this.state.activeCol)
         ) {
           if (!this.state.bingo) {
             this.setState({
@@ -108,6 +110,32 @@ class BingoBoard extends Component {
       }
     }
     return true;
+  }
+
+  /* Upper left to lower right */
+  checkDiagonalA(row, col) {
+    const size = this.state.size;
+    if (row === col) {
+      for (let i = 0; i < size; i++) {
+        if (!this.state.selection[size * i + i]) {
+          return false;
+        }
+      }
+      return true;
+    }
+  }
+
+  /* Upper right to lower left */
+  checkDiagonalB(row, col) {
+    const size = this.state.size;
+    if (row === size - col - 1) {
+      for (let i = 0; i < size; i++) {
+        if (!this.state.selection[size * i + size - i - 1]) {
+          return false;
+        }
+      }
+      return true;
+    }
   }
 
   checkBoard() {
@@ -283,6 +311,7 @@ class BingoBoard extends Component {
           gotBingo={this.state.bingo}
           startTime={this.state.startTime}
           endTime={this.state.endTime}
+          endTimeFull={this.state.endTimeFull}
         >
           <button
             className="ui button primary mini align-self-end"
