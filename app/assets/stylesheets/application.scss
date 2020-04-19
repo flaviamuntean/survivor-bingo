@@ -18,6 +18,10 @@ body {
   color: rgb(247, 247, 247);
 }
 
+.ui.dividing.header {
+  border-bottom: 1px solid rgb(233, 233, 233);
+}
+
 *[role="grid"] {
   width: 100%;
 }

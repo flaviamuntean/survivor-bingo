@@ -1,9 +1,15 @@
-<%= content_tag :div,
-  id: "user-score",
-  data: @user.username.to_json do %>
-<% end %>
-<h1>Hello, <%= @user.username %></h1>
-
+<div class="ui secondary menu">
+  <a class="item">
+    <%= content_tag :div,
+      id: "user-score",
+      data: @user.username.to_json do %>
+    <% end %>
+  </a>
+  <a class="item ml-0 pl-0" style="font-size: 12px; color: white">Leaderboard</a>
+  <div class="right menu">
+    <%= link_to "Leave game", root_path, class: "item mr-3", style: "font-size: 12px; color: white" %>
+  </div>
+</div>
 
 
 <%= content_tag :div,

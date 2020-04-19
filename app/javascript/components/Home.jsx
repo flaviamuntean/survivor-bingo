@@ -1,5 +1,6 @@
 import React from "react";
-import { Button, Header, Image } from "semantic-ui-react";
+import { Header, Image } from "semantic-ui-react";
+
 import SurvivorLogo from "./Survivor-logo.png";
 
 const Home = () => (

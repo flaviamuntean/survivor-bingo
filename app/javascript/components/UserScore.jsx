@@ -4,10 +4,10 @@ import { Label } from "semantic-ui-react";
 class UserScore extends Component {
   render() {
     return (
-      <Label as="a" color="blue" image>
-        <img src="https://react.semantic-ui.com/images/avatar/small/veronika.jpg" />
+      <Label color="blue" image style={{ borderRadius: "0" }}>
+        {/* <img src="https://react.semantic-ui.com/images/avatar/small/veronika.jpg" /> */}
         {this.props.username}
-        <Label.Detail>0</Label.Detail>
+        <Label.Detail style={{ borderRadius: "0" }}>0</Label.Detail>
       </Label>
     );
   }

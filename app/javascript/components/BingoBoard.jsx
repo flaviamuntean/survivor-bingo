@@ -1,8 +1,7 @@
 import React, { Component } from "react";
-import { Header, Table, Image } from "semantic-ui-react";
+import Header from "../components/Header";
 import PropTypes from "prop-types";
 import SimpleStorage from "react-simple-storage";
-import moment from "moment";
 import momentDurationFormatSetup from "moment-duration-format";
 import Jeff from "./Jeff_Probst.png";
 
@@ -32,6 +31,9 @@ class BingoBoard extends Component {
       activeRow: 0,
       activeCol: 0,
       endTime: 0,
+      endTimeFull: 0,
+      bingo: false,
+      fullHouse: false,
       grid: this.generateRandomGrid(phrases, size),
       midpoint: midpoint,
       selection: { [midpoint]: true },
@@ -50,10 +52,18 @@ class BingoBoard extends Component {
           .getElementById(this.props.id + "-cell-" + this.state.activeCell)
           .focus();
       }
+      // if selection has changed in some way, check for full house
 
       // if selection has changed in some way, check for bingo
       if (prevState.selection !== this.state.selection) {
-        if (
+        if (this.checkBoard()) {
+          if (!this.state.fullHouse) {
+            this.setState({
+              fullHouse: true,
+              endTimeFull: Date.now(),
+            });
+          }
+        } else if (
           this.checkRow(this.state.activeRow) ||
           this.checkCol(this.state.activeCol)
         ) {
@@ -100,12 +110,17 @@ class BingoBoard extends Component {
     return true;
   }
 
+  checkBoard() {
+    return this.checkIndices(Array.from(Array(25).keys()));
+  }
+
   refreshBoard = () => {
     this.setState({
       activeCell: 0,
       activeRow: 0,
       activeCol: 0,
       bingo: false,
+      fullHouse: false,
       grid: this.generateRandomGrid(this.state.phrases, this.state.size),
       leaderboardSubmitted: false,
       selection: { [this.state.midpoint]: true },
@@ -214,50 +229,46 @@ class BingoBoard extends Component {
   }
 
   renderSuccess() {
-    if (this.state.bingo) {
+    if (this.state.fullHouse) {
       return (
-        <div className="success maxw-95 pa3 mv3">
-          <div className="flex flex-wrap items-center justify-between">
-            <div
-              className="w-50-l w-100 tc tl-l"
-              role="alert"
-              aria-live="assertive"
-            >
-              <span className="f2 fw8">
-                You got bingo!{" "}
-                <span role="img" aria-label="Hurray!">
-                  🎉
-                </span>
-              </span>
-              <div className="f3 pt2">
-                Total time:{" "}
-                {moment
-                  .duration(this.state.endTime - this.state.startTime)
-                  .format("h [hr], m [min], s [sec]")}
-              </div>
-              <div
-                style={{
-                  width: "100%",
-                  height: "0",
-                  paddingBottom: "53%",
-                  position: "relative",
-                }}
-              >
-                <iframe
-                  src="https://giphy.com/embed/l0FhDDGgkZjE0Khc4"
-                  width="100%"
-                  height="100%"
-                  style={{ position: "absolute" }}
-                  frameBorder="0"
-                  className="giphy-embed"
-                  allowFullScreen
-                ></iframe>
-              </div>
-            </div>
-            <div className="w-50-l w-100 tc tr-l">
-              {/* {this.renderLeaderboardPrompt()} */}
-            </div>
-          </div>
+        <div
+          style={{
+            width: "100%",
+            height: "0",
+            paddingBottom: "53%",
+            position: "relative",
+          }}
+        >
+          <iframe
+            src="https://giphy.com/embed/l0FhDDGgkZjE0Khc4"
+            width="100%"
+            height="100%"
+            style={{ position: "absolute" }}
+            frameBorder="0"
+            className="giphy-embed"
+            allowFullScreen
+          ></iframe>
+        </div>
+      );
+    } else if (this.state.bingo) {
+      return (
+        <div
+          style={{
+            width: "100%",
+            height: "0",
+            paddingBottom: "53%",
+            position: "relative",
+          }}
+        >
+          <iframe
+            src="https://giphy.com/embed/3q1xJyly2WIbFlYoek"
+            width="100%"
+            height="100%"
+            style={{ position: "absolute" }}
+            frameBorder="0"
+            className="giphy-embed"
+            allowFullScreen
+          ></iframe>
         </div>
       );
     }
@@ -267,15 +278,25 @@ class BingoBoard extends Component {
   render() {
     return (
       <div>
-        <button className="bg-white black mb2" onClick={this.refreshBoard}>
-          New Board
-        </button>
+        <Header
+          gotFullHouse={this.state.fullHouse}
+          gotBingo={this.state.bingo}
+          startTime={this.state.startTime}
+          endTime={this.state.endTime}
+        >
+          <button
+            className="ui button primary mini align-self-end"
+            onClick={this.refreshBoard}
+          >
+            New Board
+          </button>
+        </Header>
 
-        <main>
+        <main className="m-3">
           <table
             role="grid"
             className="ui fixed table celled unstackable"
-            style={{ fontSize: "0.6em" }}
+            style={{ fontSize: "0.6em", borderRadius: "0" }}
           >
             <tbody role="rowgroup">
               {this.state.grid.map((row, y) => {
