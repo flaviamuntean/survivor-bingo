@@ -10,7 +10,7 @@ const Home = () => (
       style={{
         fontFamily: "'Bungee Inline', cursive",
         color: "rgb(247, 247, 247)",
-        marginTop: "60px",
+        marginTop: "30px",
         marginBottom: "20px",
       }}
     >
