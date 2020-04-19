@@ -9,8 +9,16 @@ import BingoBoard from "../components/BingoBoard";
 document.addEventListener("DOMContentLoaded", () => {
   const node = document.getElementById("bingo-board");
   const data = JSON.parse(node.getAttribute("data"));
+  const username = JSON.parse(node.getAttribute("username"));
+  const gameId = JSON.parse(node.getAttribute("game_id"));
   ReactDOM.render(
-    <BingoBoard phrases={data} />,
+    <BingoBoard
+      id="abc"
+      phrases={data}
+      size={5}
+      username={username}
+      gameId={gameId}
+    />,
     document.getElementById("bingo-board")
   );
 });

@@ -8,7 +8,9 @@
 
 <%= content_tag :div,
   id: "bingo-board",
-  data: @phrases.to_json do %>
+  data: @phrases.to_json,
+  username: @user.username.to_json,
+  game_id: @user.game_id.to_json do %>
 <% end %>
 
 <%= javascript_pack_tag 'user-score' %>

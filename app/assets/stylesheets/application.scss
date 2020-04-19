@@ -17,3 +17,85 @@ body {
   background-color: #191918;
   color: rgb(247, 247, 247);
 }
+
+*[role="grid"] {
+  width: 100%;
+}
+
+*[role="gridcell"] {
+  position: relative;
+}
+
+*[role="gridcell"]:before {
+  content: "";
+  display: block;
+  padding-top: 100%;
+}
+
+.cell-contents {
+  position: absolute;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+}
+
+.cell-toggle {
+  width: 100%;
+  height: 100%;
+  padding: 2px;
+  overflow: auto;
+
+  background: white;
+  border: 0;
+
+  font-weight: 500;
+
+  cursor: pointer;
+}
+
+.cell-toggle[aria-pressed="true"] {
+  background: #16325c;
+  color: white;
+}
+
+.cell-toggle[aria-disabled="true"] {
+  cursor: default;
+}
+
+.midpoint-cell.cell-toggle[aria-pressed="true"] {
+  background: transparent;
+  color: white;
+}
+
+.cell-toggle:focus {
+  outline: none;
+  border: 0.2rem solid #1589ee;
+}
+
+@media only screen and (max-device-width: 480px) {
+  .cell-toggle {
+    font-size: 0.6rem;
+  }
+}
+
+.blue-button {
+  background-color: #1460aa;
+}
+
+.refresh {
+  margin: 1rem auto;
+}
+
+ol {
+  margin: 0 auto;
+  text-align: left;
+}
+
+.success {
+  bottom: 0;
+  right: 0;
+  left: 1px; /* midnight hack */
+  background-color: #eaedf5;
+  outline: 4px solid #dddbda;
+}

@@ -8,9 +8,12 @@ class UsersController < ApplicationController
     username = params[:user][:username]
 
     if @user.save
+      @user.update_attributes(game_id: @user.game_id + 1)
       redirect_to user_path(@user)
     else
-      redirect_to user_path(User.find_by(username: username))
+      existing_user = User.find_by(username: username)
+      existing_user.update_attributes(game_id: existing_user.game_id + 1)
+      redirect_to user_path(existing_user)
     end
   end
 
@@ -24,7 +27,7 @@ class UsersController < ApplicationController
                 "A torch is snuffed by Jeff",
                 "A new alliance is formed",
                 "A player lies about his/her profession",
-                "A live chicked is given as a prize",
+                "A live chicken is given as a prize",
                 "The medics are called",
                 "A player claims to be the swing vote",
                 "A player mentions a final two deal",

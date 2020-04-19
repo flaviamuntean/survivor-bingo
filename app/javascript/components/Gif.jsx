@@ -9,7 +9,6 @@ class Gif extends Component {
         width="100%"
         height="270"
         frameBorder="0"
-        class="giphy-embed"
         allowFullScreen
       ></iframe>
     );
