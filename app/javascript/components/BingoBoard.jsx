@@ -4,6 +4,7 @@ import PropTypes from "prop-types";
 import SimpleStorage from "react-simple-storage";
 import momentDurationFormatSetup from "moment-duration-format";
 import Jeff from "./Jeff_Probst.png";
+import API from "../store/api";
 
 class BingoBoard extends Component {
   copyObject(obj) {
@@ -62,6 +63,9 @@ class BingoBoard extends Component {
               fullHouse: true,
               endTimeFull: Date.now(),
             });
+            // API.updateHouseTime(window.location.pathname, {
+            //   house_time: this.state.endTimeFull,
+            // });
           }
         } else if (
           this.checkRow(this.state.activeRow) ||
@@ -74,6 +78,9 @@ class BingoBoard extends Component {
               bingo: true,
               endTime: Date.now(),
             });
+            // API.updateBingoTime(window.location.pathname, {
+            //   bingo_time: this.state.endTime,
+            // });
           }
         }
       }
@@ -139,7 +146,10 @@ class BingoBoard extends Component {
   }
 
   checkBoard() {
-    return this.checkIndices(Array.from(Array(25).keys()));
+    // window.alert(this.state.size ** 2 - 1);
+    return this.checkIndices(
+      Array.from(Array(this.state.size ** 2 - 1).keys())
+    );
   }
 
   refreshBoard = () => {
@@ -325,7 +335,7 @@ class BingoBoard extends Component {
           <table
             role="grid"
             className="ui fixed table celled unstackable"
-            style={{ fontSize: "0.6em", borderRadius: "0" }}
+            style={{ fontSize: "0.9em", borderRadius: "0" }}
           >
             <tbody role="rowgroup">
               {this.state.grid.map((row, y) => {

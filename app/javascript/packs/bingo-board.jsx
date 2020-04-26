@@ -15,7 +15,7 @@ document.addEventListener("DOMContentLoaded", () => {
     <BingoBoard
       id="abc"
       phrases={data}
-      size={5}
+      size={3}
       username={username}
       gameId={gameId}
     />,

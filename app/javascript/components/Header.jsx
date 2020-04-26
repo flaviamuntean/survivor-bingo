@@ -14,6 +14,7 @@ class Header extends Component {
         </span>
       );
     } else if (this.props.gotBingo) {
+      // window.alert(this.props.endTime - this.props.startTime);
       return (
         <span className="align-self-center" style={{ color: "white" }}>
           Bingo! <br /> Total time:{" "}

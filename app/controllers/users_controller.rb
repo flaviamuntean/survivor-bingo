@@ -17,6 +17,11 @@ class UsersController < ApplicationController
     end
   end
 
+  def update
+    @user = User.find(:id)
+    @user.update(user_params)
+  end
+
   def index
   end
 
@@ -67,6 +72,6 @@ class UsersController < ApplicationController
   end
 
   def user_params
-    params.require(:user).permit(:username)
+    params.require(:user).permit(:username, :bingo_time, :house_time)
   end
 end
